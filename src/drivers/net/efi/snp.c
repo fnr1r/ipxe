@@ -23,6 +23,8 @@
 
 FILE_LICENCE ( GPL2_OR_LATER_OR_UBDL );
 
+#if 0
+
 #include <errno.h>
 #include <ipxe/efi/efi.h>
 #include <ipxe/efi/efi_driver.h>
@@ -115,3 +117,6 @@ struct efi_driver nii_driver __efi_driver ( EFI_DRIVER_NORMAL ) = {
 	.start = nii_start,
 	.stop = nii_stop,
 };
+
+#endif
+

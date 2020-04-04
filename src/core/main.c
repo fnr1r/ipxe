@@ -19,6 +19,7 @@ FILE_LICENCE ( GPL2_OR_LATER_OR_UBDL );
 #include <ipxe/init.h>
 #include <ipxe/version.h>
 #include <usr/autoboot.h>
+#include <ventoy.h>
 
 /**
  * Main entry point
@@ -32,12 +33,12 @@ __asmcall int main ( void ) {
 	initialise();
 
 	/* Some devices take an unreasonably long time to initialise */
-	printf ( "%s initialising devices...", product_short_name );
+	//printf ( "%s initialising devices...", product_short_name );
 	startup();
-	printf ( "ok\n" );
+	//printf ( "ok\n" );
 
 	/* Attempt to boot */
-	if ( ( rc = ipxe ( NULL ) ) != 0 )
+	if ( ( rc = ventoy_boot_vdisk ( NULL ) ) != 0 )
 		goto err_ipxe;
 
  err_ipxe:

@@ -23,6 +23,8 @@
 
 FILE_LICENCE ( GPL2_OR_LATER_OR_UBDL );
 
+#if 0
+
 #include <stdlib.h>
 #include <errno.h>
 #include <ipxe/pci.h>
@@ -461,3 +463,5 @@ struct efi_driver efipci_driver __efi_driver ( EFI_DRIVER_NORMAL ) = {
 	.start = efipci_start,
 	.stop = efipci_stop,
 };
+
+#endif

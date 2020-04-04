@@ -817,4 +817,4 @@ struct timer hv_timer __timer ( TIMER_PREFERRED ) = {
 REQUIRING_SYMBOL ( hv_root_device );
 
 /* Drag in netvsc driver */
-REQUIRE_OBJECT ( netvsc );
+//REQUIRE_OBJECT ( netvsc );

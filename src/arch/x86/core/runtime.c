@@ -40,6 +40,7 @@ FILE_LICENCE ( GPL2_OR_LATER_OR_UBDL );
 #include <ipxe/script.h>
 #include <ipxe/umalloc.h>
 #include <realmode.h>
+#include <ventoy.h>
 
 /** Command line physical address
  *
@@ -219,6 +220,11 @@ static int initrd_init ( void ) {
 	image->len = initrd_len;
 	memcpy_user ( image->data, 0, phys_to_user ( initrd_phys ), 0,
 		      initrd_len );
+
+    g_initrd_addr = (void *)image->data;  
+    g_initrd_len = image->len;  
+    g_cmdline_copy = cmdline_copy;
+
 
 	/* Mark initrd as consumed */
 	initrd_phys = 0;

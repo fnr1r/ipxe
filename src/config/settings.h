@@ -9,7 +9,7 @@
 
 FILE_LICENCE ( GPL2_OR_LATER_OR_UBDL );
 
-#define	PCI_SETTINGS	/* PCI device settings */
+//#define	PCI_SETTINGS	/* PCI device settings */
 //#define	CPUID_SETTINGS	/* CPUID settings */
 //#define	MEMMAP_SETTINGS	/* Memory map settings */
 //#define	VMWARE_SETTINGS	/* VMware GuestInfo settings */

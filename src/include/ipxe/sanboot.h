@@ -87,6 +87,11 @@ struct san_device {
 	struct list_head closed;
 	/** SAN paths */
 	struct san_path path[0];
+
+    unsigned int exdrive;
+    int int13_command;
+    void *x86_regptr;
+    uint8_t boot_catalog_sector[2048];
 };
 
 /** SAN device flags */

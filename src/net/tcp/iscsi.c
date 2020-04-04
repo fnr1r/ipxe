@@ -2086,7 +2086,7 @@ static int iscsi_open ( struct interface *parent, struct uri *uri ) {
 	intf_init ( &iscsi->socket, &iscsi_socket_desc, &iscsi->refcnt );
 	process_init_stopped ( &iscsi->process, &iscsi_process_desc,
 			       &iscsi->refcnt );
-	acpi_init ( &iscsi->desc, &ibft_model, &iscsi->refcnt );
+//	acpi_init ( &iscsi->desc, &ibft_model, &iscsi->refcnt );
 
 	/* Parse root path */
 	if ( ( rc = iscsi_parse_root_path ( iscsi, uri->opaque ) ) != 0 )

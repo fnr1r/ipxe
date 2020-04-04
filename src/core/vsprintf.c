@@ -162,6 +162,25 @@ static char * format_decimal ( char *end, signed long num, int width,
 	return ptr;
 }
 
+#define ZPAD 0x10
+char *format_unsigned_decimal(char *end, unsigned long long num, int width, int flags) 
+{
+	char *ptr = end;
+	int zpad = ( flags & ZPAD );
+	int pad = ( zpad | ' ' );
+
+	do {
+		*(--ptr) = '0' + ( num % 10 );
+		num /= 10;
+	} while ( num );
+
+	/* Pad to width */
+	while ( ( end - ptr ) < width )
+		*(--ptr) = pad;
+
+	return ptr;
+}
+
 /**
  * Print character via a printf context
  *
@@ -291,6 +310,16 @@ size_t vcprintf ( struct printf_context *ctx, const char *fmt, va_list args ) {
 				decimal = va_arg ( args, signed int );
 			}
 			ptr = format_decimal ( ptr, decimal, width, flags );
+		} else if ( ( *fmt == 'u' ) || ( *fmt == 'U' )){
+			unsigned long long decimal;
+            if ( *length >= sizeof ( unsigned long long ) ) {
+				decimal = va_arg ( args, unsigned long long );
+			} else if ( *length >= sizeof ( unsigned long ) ) {
+				decimal = va_arg ( args, unsigned long );
+			} else {
+				decimal = va_arg ( args, unsigned int );
+			}
+			ptr = format_unsigned_decimal( ptr, decimal, width, flags );
 		} else {
 			*(--ptr) = *fmt;
 		}

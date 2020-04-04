@@ -500,4 +500,4 @@ struct pci_driver hvm_driver __pci_driver = {
 REQUIRING_SYMBOL ( hvm_driver );
 
 /* Drag in netfront driver */
-REQUIRE_OBJECT ( netfront );
+//REQUIRE_OBJECT ( netfront );
