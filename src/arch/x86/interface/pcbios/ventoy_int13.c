@@ -1374,6 +1374,25 @@ static int int13_load_eltorito ( unsigned int drive, struct segoff *address ) {
 		return -EIO;
 	}
 
+    if (catalog.boot.length > 4)
+    {
+		isolinux_boot_info *bootinfo = NULL;
+        bootinfo = (isolinux_boot_info *)(real_to_user(address->segment, address->offset));
+        if (0x7C6CEAFA == bootinfo->isolinux0 && 0x90900000 == bootinfo->isolinux1)
+        {
+            if (bootinfo->BootFileLocation == 0 && bootinfo->PvdLocation == 16 && 
+                (bootinfo->BootFileLen / 2048) < catalog.boot.length && bootinfo->BootFileChecksum > 0)
+            {
+                if (g_debug)
+                {
+                    printf("isolinux file location is 0, now fix it to %u ...\n", catalog.boot.start);
+                    ventoy_debug_pause();
+                }
+                bootinfo->BootFileLocation = catalog.boot.start;
+            }
+        }
+    }
+
 	return 0;
 }
 
