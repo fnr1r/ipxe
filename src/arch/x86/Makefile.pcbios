@@ -16,6 +16,13 @@ LDFLAGS		+= -N --no-check-sections
 #
 LDFLAGS		+= --section-start=.prefix=0
 
+# Do not warn about RWX segments (required by most prefixes)
+#
+WRWX_TEST	= $(LD) --warn-rwx-segments --version 2>&1 > /dev/null
+WRWX_FLAGS	:= $(shell [ -z "`$(WRWX_TEST)`" ] && \
+		     $(ECHO) '--no-warn-rwx-segments')
+LDFLAGS		+= $(WRWX_FLAGS)
+
 # Media types.
 #
 MEDIA		+= rom
